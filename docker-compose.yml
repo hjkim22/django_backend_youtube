@@ -31,3 +31,8 @@ services:
       - POSTGRES_DB=youtube
       - POSTGRES_USER=hjkim22
       - POSTGRES_PASSWORD=password123
+# docker-compose down
+# docker-compose up
+
+# - db 컨테이너가 준비되면 -> django에서 db connection 시도
+# - CustomUser Model
