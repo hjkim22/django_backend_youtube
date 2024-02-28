@@ -95,5 +95,45 @@
 
 ##### (4) Admin 세팅
 
+- 4일차: REST API -> Video 관련 API
 
+(1) startapp을 통해서 각 모델명 app폴더 생성
+1. Common
+2. videos
+3. Comments
+4. Reactions(좋아요, 싫어요)
+5. Notifications
 
+- docker-compose run --rm app sh -c 'python manage.py startapp common'
+- docker-compose run --rm app sh -c 'python manage.py startapp videos'
+- docker-compose run --rm app sh -c 'python manage.py startapp comments'
+- docker-compose run --rm app sh -c 'python manage.py startapp reactions'
+- docker-compose run --rm app sh -c 'python manage.py startapp subscriptions'
+- docker-compose run --rm app sh -c 'python manage.py startapp notifications'
+
+(2) Model 정의
+
+(3) settings.py의 INSTALLED_APPS에 등록
+
+(4) DB migration
+
+- docker-compose run --rm app sh -c 'python manage.py makemigrations'
+- docker-compose run --rm app sh -c 'python manage.py migrate'
+
+(5) Video API create
+VideoList
+api/v1/videos
+
+- GET: 전체 비디오 목록 조회
+- POST: 새로운 비디오 생성
+- DELETE, PUT: X
+
+VideoDetail
+api/v1/video{video_id}
+
+- GET: 특정 비디오 상세 조회
+- POST: X
+- PUT: 특정 비디오 정보 업데이트(수정)
+- DELETE: 특정 비디오 삭제
+
+urls.py등록
