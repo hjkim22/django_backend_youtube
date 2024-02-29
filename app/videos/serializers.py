@@ -5,8 +5,8 @@ from comments.serializers import CommentSerializer
 
 class VideoSerializer(ModelSerializer):
 
-    user = UserSerializer() # USER - VIDEO(FK)
-    comment_set = CommentSerializer(many=True) # COMMENT(FK) - VIDEO
+    user = UserSerializer(read_only=True) # USER - VIDEO(FK)
+    comment_set = CommentSerializer(many=True, read_only=True) # COMMENT(FK) - VIDEO
     # 부모가 자녀를 찾기 위해서 필요한 개념: Reverse Accessor => commnet
 
     class Meta:

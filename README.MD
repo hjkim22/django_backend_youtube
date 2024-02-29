@@ -137,3 +137,22 @@ api/v1/video{video_id}
 - DELETE: 특정 비디오 삭제
 
 urls.py등록
+
+(6) Subscription API
+- 특정 유저를 구독한 유저 리스트
+- 유저가 구독한 구독 리스트
+
+post: 구독하기
+get: 구독리스트
+delete: 구독취소
+
+api/v1/subscriptions
+SubscriptionList
+[POST]: 구독하기 버튼 클릭
+
+api/v1/subscriptions/{user_id}
+SubscriptionDetail
+[DELETE]: 구독취소
+
+
+(7) Reaction API

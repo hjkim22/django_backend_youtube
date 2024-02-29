@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from .models import Video
 from .serializers import VideoSerializer
 from rest_framework.exceptions import NotFound
+from rest_framework import status
 
 # 1. VideoList
 # api/v1/videos
@@ -18,6 +19,18 @@ class VideoList(APIView):
 
         return Response(serializer.data)
     
+    def post(self, request):
+        try:
+            user_data = request.data # json -> 파이썬은 이해할 수 없음 -> Serializer
+            serializer = VideoSerializer(data=user_data)
+            
+            if serializer.is_valid():
+                serializer.save(user=request.user)
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        except Exception as e:
+            return Response({'msg':str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
 # 2. VideoDetail
 # api/v1/video{video_id}
@@ -37,3 +50,22 @@ class VideoDetail(APIView):
         serializer = VideoSerializer(video)
 
         return Response(serializer.data)
+    
+    def put(self, request, pk):
+        video = self.get_object(pk)
+        user_data = request.data
+
+        try:
+            serializer = VideoSerializer(video, data=user_data)
+            serializer.is_valid()
+            serializer.save()
+
+            return Response(serializer.data)
+        except Exception as e:
+            return Response({'msg':str(e)}, status=status.HTTP_400_BAD_REQUEST)
+        
+    def delete(self, request, pk):
+        video = self.get_object(pk)
+        video.delete()
+
+        return Response(status=status.HTTP_204_NO_CONTENT)
