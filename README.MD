@@ -156,3 +156,29 @@ SubscriptionDetail
 
 
 (7) Reaction API
+- 영상에 대해 좋아요, 싫어요를 추가하는 기능입니다.
+- REST FUL한 API인가
+
+- api/v1/reaction/{video_id}
+- api/v1/video/{video_id}/reaction => 이 방식으로 API를 만들어 보도록 하겠습니다.
+- 어떤 API를 만들어야 할지
+
+ReactionDetail
+[POST] - 좋아요, 싫어요 생성
+[DELETE] - 좋아요, 싫어요 삭제
+
+api/v1/video
+(1)
+
+
+
+(8) Chatting - SoketID
+
+(9) Deployment
+
+# REST API
+
+C: Create => POST
+R: Read => GET
+U: Update => PUT
+D: Delete => 
