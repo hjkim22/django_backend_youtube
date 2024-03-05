@@ -168,11 +168,31 @@ ReactionDetail
 [DELETE] - 좋아요, 싫어요 삭제
 
 api/v1/video
-(1)
+(1) 좋아요, 싫어요 데이터가 보이게끔
+(2) 전체 영상 데이터를 내려줄 때, 좋아요, 싫어요 개수가 보이게
 
+like/dislike count
 
+- Reaction Model
+- Video Model
 
 (8) Chatting - SoketID
+- api/v1/chat/msg
+ - [POST]: 채팅 메시지 생성
+- api/v1/chat/room
+ - [POST]: 채팅방 생성
+ - [GET]: 내가 접속해 있는 전체 채팅방 조회
+- api/v1/chat/room/{room_id}
+ - [GET]: 채팅방 조회
+
+- wss:127.0.0.1:8000/ws/chat/{room_id}
+
+1. Chat 모델 생성 startapp chat
+ - docker-compose run --rm app sh -c 'python manage.py startapp chat'
+2. Django SocketID 설치 -> Channer Library (pip install channels)
+ - requirements.txt에 아래 문구 추가
+ - channels>=4.0.0,<4.0.1
+ - docker-compose build
 
 (9) Deployment
 
@@ -181,4 +201,4 @@ api/v1/video
 C: Create => POST
 R: Read => GET
 U: Update => PUT
-D: Delete => 
+D: Delete => DELETE

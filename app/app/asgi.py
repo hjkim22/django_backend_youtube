@@ -1,3 +1,5 @@
+# 비동기 처리: 소켓, 롱폴링
+
 """
 ASGI config for app project.
 

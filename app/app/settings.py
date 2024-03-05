@@ -25,7 +25,9 @@ CUSTOM_USER_APPS=[
     'notifications.apps.NotificationsConfig',
     'core',
     'rest_framework',
-    'drf_spectacular'
+    'drf_spectacular',
+    'channels',
+    'chat.apps.ChatConfig'
 ]
 
 
@@ -59,7 +61,11 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'app.wsgi.application'
+WSGI_APPLICATION = 'app.wsgi.application' # REST API(동기처리)
+ASGI_APPLICATION = 'app.route.application' # Socket, Polling (비동기처리)
+
+# Polling
+# - ping, pong => 유저가 우리 서비스를 사용하고 있는 여부 트래킹 가능 + 앱 종료, 홈페이지 종료
 
 
 # Database
