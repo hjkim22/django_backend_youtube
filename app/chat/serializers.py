@@ -10,3 +10,5 @@ class ChatMessageSerializer(serializers.ModelSerializer):
     class Meta:
         model=ChatMessage
         fields="__all__"
+        read_only_fields=['room', 'sender']
+        depth = 1

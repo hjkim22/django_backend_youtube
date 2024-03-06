@@ -1,9 +1,8 @@
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-SECRET_KEY = 'django-insecure-#nisu=h#-=(5=sk*x=z*#y#kd^lq8df(icp%+qidvvnsvu_vyd'
-
+SECRET_KEY = 'test'
+# SECRET_KEY = 'django-insecure-#nisu=h#-=(5=sk*x=z*#y#kd^lq8df(icp%+qidvvnsvu_vyd'
 DEBUG = True
 
 ALLOWED_HOSTS = []
@@ -27,7 +26,8 @@ CUSTOM_USER_APPS=[
     'rest_framework',
     'drf_spectacular',
     'channels',
-    'chat.apps.ChatConfig'
+    'chat.apps.ChatConfig',
+    'daphne' # socket connection
 ]
 
 
@@ -121,4 +121,10 @@ AUTH_USER_MODEL = 'users.User'
 
 REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema'
+}
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+    }
 }

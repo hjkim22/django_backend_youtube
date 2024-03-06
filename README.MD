@@ -195,10 +195,8 @@ like/dislike count
  - docker-compose build
 
 (9) Deployment
+ - IAM 유저 생성
+ - EC2 instance 생성 (Amazon Linux)
+ - EC2 SSH 접속 -> Finger Print
 
-# REST API
-
-C: Create => POST
-R: Read => GET
-U: Update => PUT
-D: Delete => DELETE
+ - AWS => 배포

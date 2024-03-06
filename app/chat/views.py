@@ -3,6 +3,10 @@ from .models import ChatRoom, ChatMessage
 from .serializers import ChatRoomSerializer, ChatMessageSerializer
 from rest_framework.response import Response
 from rest_framework import status
+from django.shortcuts import render
+
+def show_html(request):
+    return render(request, 'index.html')
 
 # ChatRoom
 # [GET]: 전체 채팅방을 조회
@@ -42,6 +46,7 @@ class ChatMessageList(APIView):
         serializer = ChatMessageSerializer(data=request.data) # json -> objects
 
         if serializer.is_valid():
-            serializer.save(chatroom)
+            # serializer.save(chatroom)
+            serializer.save(room=chatroom, sender=request.user)
             return Response(serializer.data, status=status.HTTP_200_OK)
-        return Response(serializer.error, status=status.HTTP_400_BAD_REQUEST)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
